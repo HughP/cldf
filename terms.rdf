@@ -143,7 +143,7 @@
         <rdfs:comment>
             A dataset according to the CLDF Wordlist specification
         </rdfs:comment>
-        <rdfs:subClassOf rdf:resource="http://purl.org/dc/dcmitype/Dataset"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#Dictionary">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -151,7 +151,7 @@
         <rdfs:comment>
             A dataset according to the CLDF Dictionary specification
         </rdfs:comment>
-        <rdfs:subClassOf rdf:resource="http://purl.org/dc/dcmitype/Dataset"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#StructureDataset">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -159,7 +159,7 @@
         <rdfs:comment>
             A dataset according to the CLDF Structure Dataset specification
         </rdfs:comment>
-        <rdfs:subClassOf rdf:resource="http://purl.org/dc/dcmitype/Dataset"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#ValueTable">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>

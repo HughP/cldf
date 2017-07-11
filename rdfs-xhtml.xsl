@@ -16,14 +16,14 @@
 	exclude-result-prefixes="daml rdf rdfs dc #default"
 	version="1.0">
 <xsl:output
-	method="xml"
+	method="html"
 	indent="yes"
 	omit-xml-declaration="yes"
 	encoding="utf-8"/>
 
 <xsl:param name="embed" select="false()"/>
 <xsl:param name="uri" select="'?'"/>
-<xsl:param name="language" select="'da'"/>
+<xsl:param name="language" select="'en'"/>
 
 <xsl:template match="/">
 	<xsl:choose>
@@ -31,8 +31,8 @@
 			<html>
 			<head>
 				<title>RDF Schema</title>
-				<link rel="stylesheet" href="stylesheets/styles.css"/>
-    			<link rel="stylesheet" href="stylesheets/github-light.css"/>
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
     			<meta name="viewport" content="width=device-width"/>
 				<style type="text/css"><xsl:comment><![CDATA[
 p.meta { font-size: 80%; }
@@ -48,7 +48,7 @@ img { border: none; }
 				]]></xsl:comment></style>
 			</head>
 			<body>
-				<div class="wrapper">
+				<div class="container-fluid">
 					<xsl:apply-templates select="//rdf:RDF[1]"/>
     			</div>
     			<script src="javascripts/scale.fix.js"></script>
@@ -65,68 +65,35 @@ img { border: none; }
 </xsl:template>
 
 <xsl:template match="rdf:RDF">
-	<xsl:variable name="nodelang">
-		<xsl:choose>
-			<xsl:when test="@xml:lang">
-				<xsl:value-of select="@xml:lang"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="'en'"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:variable>
 	<xsl:variable name="ns">
 		<xsl:apply-templates mode="schema-namespace" select="owl:Ontology[1]"/>#
 	</xsl:variable>
 	<div class="schema">
-		<xsl:apply-templates mode="schema-title" select="owl:Ontology">
-			<xsl:with-param name="lang" select="$nodelang"/>
-		</xsl:apply-templates>
+		<xsl:apply-templates mode="schema-title" select="owl:Ontology"/>
 	</div>
 	<xsl:apply-templates mode="schema" select=".">
 		<xsl:with-param name="ns" select="$ns"/>
-		<xsl:with-param name="lang" select="$nodelang"/>
 	</xsl:apply-templates>
 </xsl:template>
 
 <xsl:template mode="description" match="rdf:RDF/*">
-	<xsl:param name="lang" select="'en'"/>
-	<xsl:variable name="nodelang">
-		<xsl:choose>
-			<xsl:when test="@xml:lang">
-				<xsl:value-of select="@xml:lang"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$lang"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:variable>
-	<xsl:apply-templates mode="schema-title" select=".">
-		<xsl:with-param name="lang" select="$nodelang"/>
-	</xsl:apply-templates>
+	<xsl:apply-templates mode="schema-title" select="."/>
 	<xsl:if test="dc:description|dc:abstract">
 		<p>
-			<xsl:apply-templates mode="value" select="dc:description|dc:abstract">
-				<xsl:with-param name="lang" select="$nodelang"/>
-			</xsl:apply-templates>
+			<xsl:apply-templates mode="value" select="dc:description|dc:abstract"/>
 		</p>
 	</xsl:if>
-	<xsl:apply-templates mode="meta" select="*">
-		<xsl:with-param name="lang" select="$nodelang"/>
-	</xsl:apply-templates>
+	<xsl:apply-templates mode="meta" select="*"/>
 </xsl:template>
 
 <xsl:template mode="schema-title" match="*">
-	<xsl:param name="lang" select="'en'"/>
 	<h1>
 		<xsl:choose>
 			<xsl:when test="not(dc:title)">
 				<xsl:text>RDF Schema</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:apply-templates mode="value" select="dc:title">
-					<xsl:with-param name="lang" select="$lang"/>
-				</xsl:apply-templates>
+				<xsl:apply-templates mode="value" select="dc:title"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</h1>
@@ -167,17 +134,10 @@ img { border: none; }
 
 <xsl:template mode="schema" match="rdf:RDF">
 	<xsl:param name="ns" select="'./'"/>
-	<xsl:param name="lang" select="'en'"/>
-	<xsl:variable name="nodelang" select="$lang"/>
-	<table class="schema">
-		<tr>
-			<th colspan="3">
 				<h2>
 					<xsl:text>Namespace: </xsl:text>
 					<xsl:value-of select="$ns"/>
 				</h2>
-			</th>
-		</tr>
 		<xsl:variable name="classes">
 			<xsl:apply-templates mode="type" select="rdfs:Class|daml:Class|*[
 					@rdf:type='http://www.w3.org/2000/01/rdf-schema#Class'
@@ -186,18 +146,13 @@ img { border: none; }
 					or rdf:type/@resource='http://www.w3.org/2000/01/rdf-schema#Class'
 					or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Class'
 					or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Class']">
-				<xsl:with-param name="lang" select="$nodelang"/>
 				<xsl:with-param name="ns" select="$ns"/>
 			</xsl:apply-templates>
 		</xsl:variable>
 		<xsl:if test="string-length($classes)!=0">
-			<tr>
-				<th colspan="3">
 					<h3>
 						<xsl:text>Classes</xsl:text>
 					</h3>
-				</th>
-			</tr>
 			<xsl:apply-templates mode="type" select="rdfs:Class|daml:Class|*[
 					@rdf:type='http://www.w3.org/2000/01/rdf-schema#Class'
 					or @rdf:type='http://www.daml.org/2001/03/daml+oil#Class'
@@ -205,7 +160,6 @@ img { border: none; }
 					or rdf:type/@resource='http://www.w3.org/2000/01/rdf-schema#Class'
 					or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Class'
 					or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Class']">
-				<xsl:with-param name="lang" select="$nodelang"/>
 				<xsl:with-param name="ns" select="$ns"/>
 			</xsl:apply-templates>
 		</xsl:if>
@@ -217,18 +171,13 @@ img { border: none; }
 					or rdf:type/@resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
 					or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Property'
 					or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Property']">
-				<xsl:with-param name="lang" select="$nodelang"/>
 				<xsl:with-param name="ns" select="$ns"/>
 			</xsl:apply-templates>
 		</xsl:variable>
 		<xsl:if test="string-length($properties)">
-			<tr>
-				<th colspan="3">
 					<h3>
 						<xsl:text>Properties</xsl:text>
 					</h3>
-				</th>
-			</tr>
 			<xsl:apply-templates mode="type" select="rdf:Property|daml:Property|*[
 					@rdf:type='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
 					or @rdf:type='http://www.daml.org/2001/03/daml+oil#Property'
@@ -236,120 +185,49 @@ img { border: none; }
 					or rdf:type/@resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
 					or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Property'
 					or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Property']">
-				<xsl:with-param name="lang" select="$nodelang"/>
 				<xsl:with-param name="ns" select="$ns"/>
 			</xsl:apply-templates>
 		</xsl:if>
-	</table>
 </xsl:template>
 
 <xsl:template mode="type" match="*">
 	<xsl:param name="ns" select="'./'"/>
-	<xsl:param name="lang" select="'en'"/>
-	<xsl:variable name="nodelang">
-		<xsl:choose>
-			<xsl:when test="@xml:lang">
-				<xsl:value-of select="@xml:lang"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$lang"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:variable>
 	<xsl:variable name="id">
-		<xsl:apply-templates mode="id" select=".">
-			<xsl:with-param name="ns" select="$ns"/>
-		</xsl:apply-templates>
+		<xsl:value-of select="substring-after(@rdf:about,normalize-space($ns))"/>
 	</xsl:variable>
-	<tr>
-		<th rowspan="{count(*)-count(rdfs:label|rdfs:comment|rdf:type[
-				@rdf:resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
-				or @resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
-				or @rdf:resource='http://www.daml.org/2001/03/daml+oil#Property'
-				or @resource='http://www.daml.org/2001/03/daml+oil#Property'
-				or @rdf:resource='http://www.daml.org/2001/03/daml+oil#Class'
-				or @resource='http://www.daml.org/2001/03/daml+oil#Class'
-				or @rdf:resource='http://www.w3.org/2000/01/rdf-schema#Class'
-				or @resource='http://www.w3.org/2000/01/rdf-schema#Class']) + 1}">
-			<h4>
-				<a name="{$id}">
+	<div class="row" style="border-bottom: 1px dashed gray; margin-bottom: 10px; padding-bottom: 10px;">
+		<div class="col-md-7">
+			<h3>
+				<a name="{$id}" id="{$id}">
 					<xsl:choose>
 						<xsl:when test="rdfs:label|@rdfs:label">
-							<xsl:apply-templates mode="value" select="rdfs:label|@rdfs:label">
-								<xsl:with-param name="lang" select="$nodelang"/>
-							</xsl:apply-templates>
+							<xsl:apply-templates mode="value" select="rdfs:label|@rdfs:label"/>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="$id"/>
 						</xsl:otherwise>
 					</xsl:choose>
 				</a>
+			</h3>
+			<h4>
+				<span class="label label-primary">
+					<xsl:value-of select="@rdf:about"/>
+				</span>
 			</h4>
-			<span style="font-size: 80%">
-				<xsl:value-of select="'['"/>
-				<xsl:if test="not(starts-with($id,'http:')) and substring($ns,string-length($ns))!='/' and substring($ns,string-length($ns))!='#'">
-					<xsl:value-of select="'#'"/>
-				</xsl:if>
-				<xsl:value-of select="$id"/>
-				<xsl:value-of select="']'"/>
-			</span>
-		</th>
-		<td colspan="2">
-			<xsl:apply-templates mode="value" select="rdfs:comment|@rdfs:comment">
-				<xsl:with-param name="lang" select="$nodelang"/>
-			</xsl:apply-templates>
-		</td>
-	</tr>
-	<xsl:apply-templates mode="details" select="*">
-		<xsl:with-param name="lang" select="$nodelang"/>
-		<xsl:with-param name="ns" select="$ns"/>
-	</xsl:apply-templates>
-</xsl:template>
-
-<xsl:template mode="id" match="*">
-	<xsl:param name="ns" select="'./'"/>
-	<xsl:choose>
-		<xsl:when test="@rdf:ID">
-			<xsl:value-of select="@rdf:ID"/>
-		</xsl:when>
-		<xsl:when test="@ID">
-			<xsl:value-of select="@ID"/>
-		</xsl:when>
-		<xsl:when test="@rdf:about and starts-with(@rdf:about,concat($ns,'#'))">
-			<xsl:value-of select="substring-after(@rdf:about,concat($ns,'#'))"/>
-		</xsl:when>
-		<xsl:when test="@about and starts-with(@about,concat($ns,'#'))">
-			<xsl:value-of select="substring-after(@about,concat($ns,'#'))"/>
-		</xsl:when>
-		<xsl:when test="@rdf:about and starts-with(@rdf:about,$ns)">
-			<xsl:value-of select="substring-after(@rdf:about,$ns)"/>
-		</xsl:when>
-		<xsl:when test="@about and starts-with(@about,$ns)">
-			<xsl:value-of select="substring-after(@about,$ns)"/>
-		</xsl:when>
-		<xsl:when test="@rdf:about and starts-with(@rdf:about,'http:')">
-			<xsl:value-of select="@rdf:about"/>
-		</xsl:when>
-		<xsl:when test="@about and starts-with(@about,'http:')">
-			<xsl:value-of select="@about"/>
-		</xsl:when>
-		<xsl:when test="@rdf:about and starts-with(@rdf:about,'.')">
-			<xsl:call-template name="basepath">
-				<xsl:with-param name="path" select="$ns"/>
-			</xsl:call-template>
-			<xsl:value-of select="@rdf:about"/>
-		</xsl:when>
-		<xsl:when test="@about and starts-with(@about,'.')">
-			<xsl:call-template name="basepath">
-				<xsl:with-param name="path" select="$ns"/>
-			</xsl:call-template>
-			<xsl:value-of select="@about"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:value-of select="$ns"/>
-			<xsl:value-of select="@rdf:about|@about"/>
-		</xsl:otherwise>
-	</xsl:choose>
+			<p>
+				<xsl:apply-templates mode="value" select="rdfs:comment|@rdfs:comment"/>
+			</p>
+		</div>
+		<div class="col-md-5">
+			<div class="well well-small" style="margin-top: 10px; padding-bottom: 5px !important;">
+				<dl class="dl-horizontal">
+					<xsl:apply-templates mode="details" select="*">
+						<xsl:with-param name="ns" select="$ns"/>
+					</xsl:apply-templates>
+				</dl>
+			</div>
+		</div>
+	</div>
 </xsl:template>
 
 <xsl:template mode="details" match="rdfs:label|rdfs:comment|rdf:type[
@@ -365,29 +243,15 @@ img { border: none; }
 
 <xsl:template mode="details" match="*">
 	<xsl:param name="ns" select="'./'"/>
-	<xsl:param name="lang" select="'en'"/>
-	<xsl:variable name="nodelang">
-		<xsl:choose>
-			<xsl:when test="@xml:lang">
-				<xsl:value-of select="@xml:lang"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$lang"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:variable>
-	<tr class="details">
-		<th>
+		<dt>
 			<xsl:value-of select="local-name()"/>
 			<xsl:value-of select="':'"/>
-		</th>
-		<td>
+		</dt>
+		<dd>
 			<xsl:apply-templates mode="value" select=".">
-				<xsl:with-param name="lang" select="$nodelang"/>
 				<xsl:with-param name="ns" select="$ns"/>
 			</xsl:apply-templates>
-		</td>
-	</tr>
+		</dd>
 </xsl:template>
 
 <xsl:template mode="value" match="*[@rdf:resource|@resource]">
@@ -419,32 +283,14 @@ img { border: none; }
 </xsl:template>
 
 <xsl:template mode="value" match="*">
-	<xsl:param name="lang" select="'en'"/>
-	<xsl:variable name="nodelang">
-		<xsl:choose>
-			<xsl:when test="@xml:lang">
-				<xsl:value-of select="@xml:lang"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$lang"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:variable>
 	<xsl:variable name="nsname" select="concat(namespace-uri(),local-name())"/>
 	<xsl:choose>
-		<xsl:when test="count(../*[concat(namespace-uri(),local-name())=$nsname])=1 or $language=$nodelang">
+		<xsl:when test="count(../*[concat(namespace-uri(),local-name())=$nsname])=1">
 			<xsl:value-of select=".|@rdf:value|@value"/>
 		</xsl:when>
-		<xsl:when test="count(../*[concat(namespace-uri(),local-name())=$nsname and (not(@xml:lang) or @xml:lang=$language)])=1">
-		</xsl:when>
-		<xsl:when test="starts-with($nodelang,'en')">
+		<xsl:otherwise>
 			<xsl:value-of select=".|@rdf:value|@value"/>
-		</xsl:when>
-		<xsl:when test="count(../*[concat(namespace-uri(),local-name())=$nsname and (@xml:lang and starts-with(@xml:lang,'en') or starts-with($lang,'en'))])=1">
-		</xsl:when>
-		<xsl:when test="position()=1">
-			<xsl:value-of select=".|@rdf:value|@value"/>
-		</xsl:when>
+		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
@@ -569,4 +415,3 @@ img { border: none; }
 </xsl:template>
 
 </xsl:stylesheet>
-
