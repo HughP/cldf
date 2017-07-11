@@ -9,8 +9,11 @@
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://cldf.clld.org/terms.rdf">
-        <rdfs:label xml:lang="en">The CLDF Vocabulary</rdfs:label>
+        <rdfs:label xml:lang="en">The CLDF Ontology</rdfs:label>
+        <dc:title xml:lang="en">The CLDF Ontology</dc:title>
         <rdfs:comment xml:lang="en">
+            The CLDF Ontology is an RDF vocabulary describing the dataset types, tables
+            and columns specified in the CLDF standard.
         </rdfs:comment>
     </owl:Ontology>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#alignment">
@@ -23,7 +26,7 @@
             those sound sequences missing a certain counterpart.
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source>List2014d</dc:source>
+        <dc:source rdf:resource="http://bibliography.lingpy.org/raw.php?key=List2014d"/>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#cognateSet">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -35,7 +38,7 @@
             those sound sequences missing a certain counterpart.
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source>List2014d</dc:source>
+        <dc:source rdf:resource="http://bibliography.lingpy.org/raw.php?key=List2014d"/>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#conceptSet">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -47,11 +50,12 @@
             or the language in which they were originally created).
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source>List2016a</dc:source>
+        <dc:source rdf:resource="http://bibliography.lingpy.org/raw.php?key=List2016a"/>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#lexicalUnit">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
         <rdfs:label xml:lang="en">Lexical Unit</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/linguistics/gold/hasLexicalUnit" />
         <rdfs:comment>
             A lexical unit is any collection of word forms corresponding to a
             certain meaning which can be found in comparative datasets. Ideally, a lexical
@@ -60,7 +64,6 @@
             alternatives for their preferred form.
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source></dc:source>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#motivationStructure">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -74,7 +77,6 @@
             "skin", and whose motivation structure could be rendered as `tree bark`.
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source></dc:source>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#prosodicStructure">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -89,7 +91,6 @@
             a suprasegmental element are usually the only required elements.
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source></dc:source>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#root">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -99,7 +100,6 @@
             unit from which several [stems](:cldf:Stem) can be derived.
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source></dc:source>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#stem">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -109,7 +109,6 @@
             which has been derived as such from a given [root](:cldf:Root).
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source></dc:source>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#soundSequence">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -125,7 +124,6 @@
             [prosodic structure](:cldf:ProsodicStructure) of a word form.
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source></dc:source>
     </rdf:Property>
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#subSequence">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -138,7 +136,6 @@
             determined by scholars to serve as the basis for historical comparison.
         </rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <dc:source></dc:source>
     </rdf:Property>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#Wordlist">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -147,7 +144,6 @@
             A dataset according to the CLDF Wordlist specification
         </rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://purl.org/dc/dcmitype/Dataset"/>
-        <dc:source></dc:source>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#Dictionary">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -156,7 +152,6 @@
             A dataset according to the CLDF Dictionary specification
         </rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://purl.org/dc/dcmitype/Dataset"/>
-        <dc:source></dc:source>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#StructureDataset">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
@@ -165,48 +160,54 @@
             A dataset according to the CLDF Structure Dataset specification
         </rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://purl.org/dc/dcmitype/Dataset"/>
-        <dc:source></dc:source>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#ValueTable">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
         <rdfs:label xml:lang="en">ValueTable</rdfs:label>
-        <rdfs:comment></rdfs:comment>
-        <dc:source></dc:source>
+        <rdfs:comment>
+            The table of value assignments of a CLDF Structure Dataset
+        </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#ExampleTable">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
         <rdfs:label xml:lang="en">ExampleTable</rdfs:label>
-        <rdfs:comment></rdfs:comment>
-        <dc:source></dc:source>
+        <rdfs:comment>
+            The table of examples provided with a CLDF dataset
+        </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#EntryTable">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
         <rdfs:label xml:lang="en">EntryTable</rdfs:label>
-        <rdfs:comment></rdfs:comment>
-        <dc:source></dc:source>
+        <rdfs:comment>
+            The table of entries of a CLDF Dictionary
+        </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#SenseTable">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
         <rdfs:label xml:lang="en">SenseTable</rdfs:label>
-        <rdfs:comment></rdfs:comment>
-        <dc:source></dc:source>
+        <rdfs:comment>
+            The table of senses of a CLDF Dictionary
+        </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#FormTable">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
         <rdfs:label xml:lang="en">FormTable</rdfs:label>
-        <rdfs:comment></rdfs:comment>
-        <dc:source></dc:source>
+        <rdfs:comment>
+            The table of forms of a CLDF Wordlist
+        </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#CognateTable">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
         <rdfs:label xml:lang="en">CognateTable</rdfs:label>
-        <rdfs:comment></rdfs:comment>
-        <dc:source></dc:source>
+        <rdfs:comment>
+            The table of cognate judgements of a CLDF Wordlist
+        </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/terms.rdf#LanguageTable">
         <rdfs:isDefinedBy rdf:resource="http://cldf.clld.org/terms.rdf#"/>
         <rdfs:label xml:lang="en">LanguageTable</rdfs:label>
-        <rdfs:comment></rdfs:comment>
-        <dc:source></dc:source>
+        <rdfs:comment>
+            The table of languages provided with a CLDF dataset
+        </rdfs:comment>
     </rdfs:Class>
 </rdf:RDF>

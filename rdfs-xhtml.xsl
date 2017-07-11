@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-	# A generic RFDS to XHTML presentation conversion (0.2).
+	# Based on the generic RFDS to XHTML presentation conversion (0.2).
 
 	# (c) 2003 Morten Frederiksen
 	# License: http://www.gnu.org/licenses/gpl
@@ -10,10 +10,10 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:dcterms="http://purl.org/dc/terms/"
-	exclude-result-prefixes="daml rdf rdfs dc dcterms #default"
+	xmlns:dc="http://purl.org/dc/terms/"
+	exclude-result-prefixes="daml rdf rdfs dc #default"
 	version="1.0">
 <xsl:output
 	method="xml"
@@ -31,10 +31,10 @@
 			<html>
 			<head>
 				<title>RDF Schema</title>
-				<meta http-equiv="Content-Type" content="text/xhtml+xml; charset=utf-8"/>
+				<link rel="stylesheet" href="stylesheets/styles.css"/>
+    			<link rel="stylesheet" href="stylesheets/github-light.css"/>
+    			<meta name="viewport" content="width=device-width"/>
 				<style type="text/css"><xsl:comment><![CDATA[
-body { font-family: "Trebuchet MS", Verdana, sans-serif; }
-p { margin: 0; padding: 0; }
 p.meta { font-size: 80%; }
 .schema h1+p { margin: 1em 0; }
 table.schema { width: 100%; }
@@ -48,7 +48,10 @@ img { border: none; }
 				]]></xsl:comment></style>
 			</head>
 			<body>
-				<xsl:apply-templates select="//rdf:RDF[1]"/>
+				<div class="wrapper">
+					<xsl:apply-templates select="//rdf:RDF[1]"/>
+    			</div>
+    			<script src="javascripts/scale.fix.js"></script>
 			</body>
 			</html>
 		</xsl:when>
@@ -73,36 +76,12 @@ img { border: none; }
 		</xsl:choose>
 	</xsl:variable>
 	<xsl:variable name="ns">
-		<xsl:choose>
-			<xsl:when test="*[@rdf:about=$uri or @rdf:about=concat($uri,'#') or @rdf:about='' or @about=$uri or @about=concat($uri,'#') or @about='']">
-				<xsl:apply-templates mode="schema-namespace" select="*[@rdf:about=$uri or @rdf:about=concat($uri,'#') or @rdf:about='' or @about=$uri or @about=concat($uri,'#') or @about='']"/>
-			</xsl:when>
-			<xsl:when test="rdf:Description">
-				<xsl:apply-templates mode="schema-namespace" select="rdf:Description[1]"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$uri"/>
-			</xsl:otherwise>
-		</xsl:choose>
+		<xsl:apply-templates mode="schema-namespace" select="owl:Ontology[1]"/>#
 	</xsl:variable>
 	<div class="schema">
-		<xsl:choose>
-			<xsl:when test="*[@rdf:about=$ns or @rdf:about=$uri or @rdf:about=concat($uri,'#') or @rdf:about='' or @about=$uri or @about=concat($uri,'#') or @about='']">
-				<xsl:apply-templates mode="description" select="*[@rdf:about=$ns or @rdf:about=$uri or @rdf:about=concat($uri,'#') or @rdf:about='' or @about=$uri or @about=concat($uri,'#') or @about='']">
-					<xsl:with-param name="lang" select="$nodelang"/>
-				</xsl:apply-templates>
-			</xsl:when>
-			<xsl:when test="rdf:Description">
-				<xsl:apply-templates mode="description" select="rdf:Description[1]">
-					<xsl:with-param name="lang" select="$nodelang"/>
-				</xsl:apply-templates>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:apply-templates mode="schema-title" select=".">
-					<xsl:with-param name="lang" select="$nodelang"/>
-				</xsl:apply-templates>
-			</xsl:otherwise>
-		</xsl:choose>
+		<xsl:apply-templates mode="schema-title" select="owl:Ontology">
+			<xsl:with-param name="lang" select="$nodelang"/>
+		</xsl:apply-templates>
 	</div>
 	<xsl:apply-templates mode="schema" select=".">
 		<xsl:with-param name="ns" select="$ns"/>
@@ -125,9 +104,9 @@ img { border: none; }
 	<xsl:apply-templates mode="schema-title" select=".">
 		<xsl:with-param name="lang" select="$nodelang"/>
 	</xsl:apply-templates>
-	<xsl:if test="dc:description|dcterms:abstract">
+	<xsl:if test="dc:description|dc:abstract">
 		<p>
-			<xsl:apply-templates mode="value" select="dc:description|dcterms:abstract">
+			<xsl:apply-templates mode="value" select="dc:description|dc:abstract">
 				<xsl:with-param name="lang" select="$nodelang"/>
 			</xsl:apply-templates>
 		</p>
@@ -153,7 +132,7 @@ img { border: none; }
 	</h1>
 </xsl:template>
 
-<xsl:template mode="meta" priority="0.9" match="dc:title|dc:description|dcterms:abstract">
+<xsl:template mode="meta" priority="0.9" match="dc:title|dc:description|dc:abstract">
 </xsl:template>
 
 <xsl:template mode="meta" priority="0.1" match="*">
@@ -186,23 +165,6 @@ img { border: none; }
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template mode="icon" match="*">
-	<xsl:param name="ns" select="'./'"/>
-	<a href="{$ns}">
-		<xsl:element name="img">
-			<xsl:attribute name="src">
-				<xsl:value-of select="'http://xml.mfd-consult.dk/images/rdf-schema.png'"/>
-			</xsl:attribute>
-			<xsl:attribute name="style">
-				<xsl:value-of select="'float: right; margin: 0.2em; padding: 0'"/>
-			</xsl:attribute>
-			<xsl:attribute name="alt">
-				<xsl:value-of select="'[RDF Schema]'"/>
-			</xsl:attribute>
-		</xsl:element>
-	</a>
-</xsl:template>
-
 <xsl:template mode="schema" match="rdf:RDF">
 	<xsl:param name="ns" select="'./'"/>
 	<xsl:param name="lang" select="'en'"/>
@@ -210,11 +172,6 @@ img { border: none; }
 	<table class="schema">
 		<tr>
 			<th colspan="3">
-				<xsl:if test="string-length($ns)!=0">
-					<xsl:apply-templates mode="icon" select=".">
-						<xsl:with-param name="ns" select="$ns"/>
-					</xsl:apply-templates>
-				</xsl:if>
 				<h2>
 					<xsl:text>Namespace: </xsl:text>
 					<xsl:value-of select="$ns"/>
@@ -445,9 +402,16 @@ img { border: none; }
 			<xsl:with-param name="ns" select="$ns"/>
 		</xsl:apply-templates>
 	</xsl:variable>
-	<a href="{$res}">
-		<xsl:value-of select="$res"/>
-	</a>
+	<xsl:if test="local-name() = 'source'">
+		<a href="{$res}">
+			<xsl:value-of select="substring-after($res, '=')"/>
+		</a>
+		</xsl:if>
+		<xsl:if test="local-name() != 'source'">
+			<a href="{$res}">
+			<xsl:value-of select="$res"/>
+		</a>
+		</xsl:if>
 </xsl:template>
 
 <xsl:template mode="value" match="@*">
@@ -488,7 +452,6 @@ img { border: none; }
 	<xsl:param name="ns" select="'./'"/>
 	<a>
 		<xsl:attribute name="href">
-			<xsl:value-of select="'http://xml.mfd-consult.dk/ws/2003/01/rdfs/?rdfs='"/>
 			<xsl:call-template name="ampify">
 				<xsl:with-param name="text">
 					<xsl:apply-templates mode="rdfs-uri" select=".">
@@ -497,17 +460,6 @@ img { border: none; }
 				</xsl:with-param>
 			</xsl:call-template>
 		</xsl:attribute>
-		<xsl:element name="img">
-			<xsl:attribute name="style">
-				<xsl:value-of select="'vertical-align: bottom'"/>
-			</xsl:attribute>
-			<xsl:attribute name="src">
-				<xsl:value-of select="'http://xml.mfd-consult.dk/images/rdfs-small.png'"/>
-			</xsl:attribute>
-			<xsl:attribute name="alt">
-				<xsl:value-of select="'[RDFS]'"/>
-			</xsl:attribute>
-		</xsl:element>
 	</a>
 	<xsl:value-of select="' '"/>
 </xsl:template>
