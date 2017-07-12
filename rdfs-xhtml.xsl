@@ -22,7 +22,6 @@
 	encoding="utf-8"/>
 
 <xsl:param name="embed" select="false()"/>
-<xsl:param name="uri" select="'?'"/>
 <xsl:param name="language" select="'en'"/>
 
 <xsl:template match="/">
@@ -99,8 +98,7 @@ img { border: none; }
 	</h1>
 </xsl:template>
 
-<xsl:template mode="meta" priority="0.9" match="dc:title|dc:description|dc:abstract">
-</xsl:template>
+<xsl:template mode="meta" priority="0.9" match="dc:title|dc:description|dc:abstract"/>
 
 <xsl:template mode="meta" priority="0.1" match="*">
 	<p class="meta">
@@ -123,9 +121,6 @@ img { border: none; }
 		<xsl:when test="string-length(../@xml:base)!=0">
 			<xsl:value-of select="../@xml:base"/>
 		</xsl:when>
-		<xsl:when test="string-length($uri)!=0">
-			<xsl:value-of select="$uri"/>
-		</xsl:when>
 		<xsl:otherwise>
 			<xsl:value-of select="'?'"/>
 		</xsl:otherwise>
@@ -134,60 +129,60 @@ img { border: none; }
 
 <xsl:template mode="schema" match="rdf:RDF">
 	<xsl:param name="ns" select="'./'"/>
-				<h2>
-					<xsl:text>Namespace: </xsl:text>
-					<xsl:value-of select="$ns"/>
-				</h2>
-		<xsl:variable name="classes">
-			<xsl:apply-templates mode="type" select="rdfs:Class|daml:Class|*[
-					@rdf:type='http://www.w3.org/2000/01/rdf-schema#Class'
-					or @rdf:type='http://www.daml.org/2001/03/daml+oil#Class'
-					or rdf:type/@rdf:resource='http://www.w3.org/2000/01/rdf-schema#Class'
-					or rdf:type/@resource='http://www.w3.org/2000/01/rdf-schema#Class'
-					or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Class'
-					or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Class']">
-				<xsl:with-param name="ns" select="$ns"/>
-			</xsl:apply-templates>
-		</xsl:variable>
-		<xsl:if test="string-length($classes)!=0">
-					<h3>
-						<xsl:text>Classes</xsl:text>
-					</h3>
-			<xsl:apply-templates mode="type" select="rdfs:Class|daml:Class|*[
-					@rdf:type='http://www.w3.org/2000/01/rdf-schema#Class'
-					or @rdf:type='http://www.daml.org/2001/03/daml+oil#Class'
-					or rdf:type/@rdf:resource='http://www.w3.org/2000/01/rdf-schema#Class'
-					or rdf:type/@resource='http://www.w3.org/2000/01/rdf-schema#Class'
-					or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Class'
-					or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Class']">
-				<xsl:with-param name="ns" select="$ns"/>
-			</xsl:apply-templates>
-		</xsl:if>
-		<xsl:variable name="properties">
-			<xsl:apply-templates mode="type" select="rdf:Property|daml:Property|*[
-					@rdf:type='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
-					or @rdf:type='http://www.daml.org/2001/03/daml+oil#Property'
-					or rdf:type/@rdf:resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
-					or rdf:type/@resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
-					or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Property'
-					or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Property']">
-				<xsl:with-param name="ns" select="$ns"/>
-			</xsl:apply-templates>
-		</xsl:variable>
-		<xsl:if test="string-length($properties)">
-					<h3>
-						<xsl:text>Properties</xsl:text>
-					</h3>
-			<xsl:apply-templates mode="type" select="rdf:Property|daml:Property|*[
-					@rdf:type='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
-					or @rdf:type='http://www.daml.org/2001/03/daml+oil#Property'
-					or rdf:type/@rdf:resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
-					or rdf:type/@resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
-					or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Property'
-					or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Property']">
-				<xsl:with-param name="ns" select="$ns"/>
-			</xsl:apply-templates>
-		</xsl:if>
+	<h2>
+		<xsl:text>Namespace: </xsl:text>
+		<xsl:value-of select="$ns"/>
+	</h2>
+	<xsl:variable name="classes">
+		<xsl:apply-templates mode="type" select="rdfs:Class|daml:Class|*[
+				@rdf:type='http://www.w3.org/2000/01/rdf-schema#Class'
+				or @rdf:type='http://www.daml.org/2001/03/daml+oil#Class'
+				or rdf:type/@rdf:resource='http://www.w3.org/2000/01/rdf-schema#Class'
+				or rdf:type/@resource='http://www.w3.org/2000/01/rdf-schema#Class'
+				or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Class'
+				or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Class']">
+			<xsl:with-param name="ns" select="$ns"/>
+		</xsl:apply-templates>
+	</xsl:variable>
+	<xsl:if test="string-length($classes)!=0">
+		<h3>
+			<xsl:text>Classes</xsl:text>
+		</h3>
+		<xsl:apply-templates mode="type" select="rdfs:Class|daml:Class|*[
+				@rdf:type='http://www.w3.org/2000/01/rdf-schema#Class'
+				or @rdf:type='http://www.daml.org/2001/03/daml+oil#Class'
+				or rdf:type/@rdf:resource='http://www.w3.org/2000/01/rdf-schema#Class'
+				or rdf:type/@resource='http://www.w3.org/2000/01/rdf-schema#Class'
+				or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Class'
+				or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Class']">
+			<xsl:with-param name="ns" select="$ns"/>
+		</xsl:apply-templates>
+	</xsl:if>
+	<xsl:variable name="properties">
+		<xsl:apply-templates mode="type" select="rdf:Property|daml:Property|*[
+				@rdf:type='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
+				or @rdf:type='http://www.daml.org/2001/03/daml+oil#Property'
+				or rdf:type/@rdf:resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
+				or rdf:type/@resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
+				or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Property'
+				or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Property']">
+			<xsl:with-param name="ns" select="$ns"/>
+		</xsl:apply-templates>
+	</xsl:variable>
+	<xsl:if test="string-length($properties)">
+		<h3>
+			<xsl:text>Properties</xsl:text>
+		</h3>
+		<xsl:apply-templates mode="type" select="rdf:Property|daml:Property|*[
+				@rdf:type='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
+				or @rdf:type='http://www.daml.org/2001/03/daml+oil#Property'
+				or rdf:type/@rdf:resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
+				or rdf:type/@resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
+				or rdf:type/@rdf:resource='http://www.daml.org/2001/03/daml+oil#Property'
+				or rdf:type/@resource='http://www.daml.org/2001/03/daml+oil#Property']">
+			<xsl:with-param name="ns" select="$ns"/>
+		</xsl:apply-templates>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template mode="type" match="*">
@@ -214,9 +209,9 @@ img { border: none; }
 					<xsl:value-of select="@rdf:about"/>
 				</span>
 			</h4>
-			<p>
+			<div>
 				<xsl:apply-templates mode="value" select="rdfs:comment|@rdfs:comment"/>
-			</p>
+			</div>
 		</div>
 		<div class="col-md-5">
 			<div class="well well-small" style="margin-top: 10px; padding-bottom: 5px !important;">
@@ -243,15 +238,15 @@ img { border: none; }
 
 <xsl:template mode="details" match="*">
 	<xsl:param name="ns" select="'./'"/>
-		<dt>
-			<xsl:value-of select="local-name()"/>
-			<xsl:value-of select="':'"/>
-		</dt>
-		<dd>
-			<xsl:apply-templates mode="value" select=".">
-				<xsl:with-param name="ns" select="$ns"/>
-			</xsl:apply-templates>
-		</dd>
+	<dt>
+		<xsl:value-of select="local-name()"/>
+		<xsl:value-of select="':'"/>
+	</dt>
+	<dd>
+		<xsl:apply-templates mode="value" select=".">
+			<xsl:with-param name="ns" select="$ns"/>
+		</xsl:apply-templates>
+	</dd>
 </xsl:template>
 
 <xsl:template mode="value" match="*[@rdf:resource|@resource]">
@@ -285,6 +280,9 @@ img { border: none; }
 <xsl:template mode="value" match="*">
 	<xsl:variable name="nsname" select="concat(namespace-uri(),local-name())"/>
 	<xsl:choose>
+		<xsl:when test="@rdf:parseType = 'Literal'">
+			<xsl:copy-of select="./*"/>
+		</xsl:when>
 		<xsl:when test="count(../*[concat(namespace-uri(),local-name())=$nsname])=1">
 			<xsl:value-of select=".|@rdf:value|@value"/>
 		</xsl:when>
