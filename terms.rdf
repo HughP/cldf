@@ -28,6 +28,7 @@
             An ISO 639-3 language code, i.e. a three-letter code denoting a valid ISO 639-3
             language or macrolanguage.
         </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier" />
     </rdf:Property>
 
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#glottocode">
@@ -36,6 +37,7 @@
             <p>A <a href="http://glottolog.org">Glottolog</a> code denoting a languoid.</p>
         </rdfs:comment>
         <rdfs:seeAlso rdf:resource="http://glottolog.org" />
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier" />
     </rdf:Property>
 
     <rdf:Property rdf:about="http://cldf.clld.org/terms.rdf#alignment">
