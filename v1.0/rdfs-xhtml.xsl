@@ -129,10 +129,12 @@ img { border: none; }
 
 <xsl:template mode="schema" match="rdf:RDF">
 	<xsl:param name="ns" select="'./'"/>
-	<h2>
-		<xsl:text>Namespace: </xsl:text>
-		<xsl:value-of select="$ns"/>
-	</h2>
+	<dl>
+		<dt>Namespace:</dt>
+		<dd><xsl:value-of select="$ns"/></dd>
+		<dt>Version info:</dt>
+		<dd><xsl:value-of select="owl:Ontology/owl:versionInfo/text()"/></dd>
+	</dl>
 	<xsl:variable name="classes">
 		<xsl:apply-templates mode="type" select="rdfs:Class|daml:Class|*[
 				@rdf:type='http://www.w3.org/2000/01/rdf-schema#Class'
