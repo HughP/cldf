@@ -8,57 +8,108 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
   </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <p><img src="logos/logo.png" alt="CLDF"/></p>
-        <p>Cross-Linguistic Data Formats</p>
 
-        <p class="view"><a href="https://github.com/glottobank/cldf">View the Project on GitHub <small>glottobank/cldf</small></a></p>
+ <body class="site">
+    <header class="site-header">
+    <nav>
+    <div class="sticky-nav">
+    <div class="container-nav">
+       <div class="nav-container">
+         <div class="navbar-brand"> <a href="http://cldf.clld.org">
+             <img width="150" src="logos/logo_straight.png" alt="CLDF">
+         </a> </div>
+         <div class="navbar-nav nav-mobile">
+            <a class="nav-item nav-link btn btn-nav" href="/">Home</a>
+            <a class="nav-item nav-link btn btn-nav" href="v1.0/terms.rdf">Ontology</a>
+             <a class="nav-item nav-link btn btn-nav" href="https://github.com/glottobank/cldf/tree/master/examples">Examples</a>
+         </div>
+         <div class="navbar-nav nav-main">
+           <a class="nav-item nav-link active" href="/">Home</a>
+           <a href="v1.0/terms.rdf" class="nav-item nav-link">Ontology</a>
+             <a class="nav-item nav-link" href="https://github.com/glottobank/cldf/tree/master/examples">Examples</a>
+         </div>
+      </div>
+      </div>
+      </div>
+    </nav>
+    </header>
+<main class="site-content">
+<section class="section-alt pad-top">
+  <div class="container">
+<h1 class="text-center headline">Cross-Linguistic Data Formats</h1>
 
+</div>
+</section>
+<section class="section-main">
+  <div class="container pad-top">
+ <div class="service-flexrow pad-top">
 
-        <ul>
-          <li><a href="https://github.com/glottobank/cldf/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/glottobank/cldf/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/glottobank/cldf">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true">
-  <span aria-hidden="true" class="octicon octicon-link"></span></a>History</h3>
+  <div class="column-33">
+      <div>
+      <img src="logos/logo.png" alt="CLDF logo" class="img-responsive">
+      </div>
+  </div>
 
-<p>While data formats to exchange linguistic data have been around for some time, e.g. the SFM or Standard Format 
-used by Toolbox, new developments in the area of language diversity research have motivated this push for a new
-set of formats:</p>
-<ul>
-  <li>A new interest in standardizing <a href="https://www.w3.org/TR/tabular-data-model/">tabular data on the web</a>,
-  with a particular focus on <a href="http://csvconf.com/">CSV</a></li>
-  <li>A trend towards using computational methods to analyse large scale cross-linguistic data.</li>
-  <!--li>The clld framework, developed within the CLLD project has </li-->
-</ul>
-<p>Thus, following up discussions from the first workshop on
-<a href="http://www.mpi.nl/events/language-comparison-with-linguistic-databases-reflex-and-typological-databases">
-  Language Comparison with Linguistic Databases
-</a> a 
-<a href="http://www.eva.mpg.de/linguistics/conferences/2014-ws-lanclid2/index.html">second workshop</a> in Leipzig
-focused on the idea of a very simple CSV based format to exchange very simple cross-linguistic data.</p>
-<p>Simplicity was the main design goal from the start, so the formats under consideration will evolve starting out
-as simple as possible. Thus, the first milestone to be reached is a proof of usefulness. With the
-<a href="https://github.com/glottobank/cldf/releases/tag/v0.4">first release of the CLDF spec</a> we hope to provide
-a baseline for experiments, and possibly even this proof.</p>
+<div class="column-66 gray-box">
+   <div>
+       <h2>
+           <a class="anchor" href="#welcome-to-github-pages" aria-hidden="true">
+               <span aria-hidden="true" class="octicon octicon-link"></span></a>History</h2>
 
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="http://glottobank.org">Glottobank</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+       <p>While data formats to exchange linguistic data have been around for some time, e.g. the SFM or Standard Format
+           used by Toolbox, new developments in the area of language diversity research have motivated this push for a new
+           set of formats:</p>
+       <ul>
+           <li>A new interest in standardizing <a href="https://www.w3.org/TR/tabular-data-model/">tabular data on the web</a>,
+               with a particular focus on <a href="http://csvconf.com/">CSV</a></li>
+           <li>A trend towards using computational methods to analyse large scale cross-linguistic data.</li>
+           <!--li>The clld framework, developed within the CLLD project has </li-->
+       </ul>
+       <p>Thus, following up discussions from the first workshop on
+           <a href="http://www.mpi.nl/events/language-comparison-with-linguistic-databases-reflex-and-typological-databases">
+               Language Comparison with Linguistic Databases
+           </a> a
+           <a href="http://www.eva.mpg.de/linguistics/conferences/2014-ws-lanclid2/index.html">second workshop</a> in Leipzig
+           focused on the idea of a very simple CSV based format to exchange very simple cross-linguistic data.</p>
+       <p>Simplicity was the main design goal from the start, so the formats under consideration will evolve starting out
+           as simple as possible. Thus, the first milestone to be reached is a proof of usefulness. With the
+           <a href="https://github.com/glottobank/cldf/releases/tag/v0.4">first release of the CLDF spec</a> we hope to provide
+           a baseline for experiments, and possibly even this proof.</p>
+
+  </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<!-- expanded_footer -->
+
+<div class="footer">
+        <div class="container flex-footer">
+               <div class="f-links f-item">
+               <h2>CLDF Specification</h2>
+              <ul class="footer-links">
+                  <li><a href="https://github.com/glottobank/cldf/zipball/master">Download <strong>ZIP File</strong></a></li>
+                  <li><a href="https://github.com/glottobank/cldf/tarball/master">Download <strong>TAR Ball</strong></a></li>
+                  <li><a href="https://github.com/glottobank/cldf">View On <strong>GitHub</strong></a></li>
+              </ul>
+               </div>
+            <div class="f-about f-item">
+                <h2>About</h2>
+                <p>CLDF is an initiative by the Glottobank consortium.</p>
+            </div>
+                <div class="f-contact f-item">
+                    <!-- Contact Us -->
+                    <h2>Contact Info</h2>
+                    <span class="footer-address">Robert Forkel<br /> <span style="font-family: monospace">forkel@shh.mpg.de</span></address>
+                </div>
+
+  </div>
+</div>
+
+<!-- expanded_footer end -->
+</footer>
+</body>
 </html>
