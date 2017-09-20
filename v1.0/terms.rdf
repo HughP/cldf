@@ -20,6 +20,13 @@
         <foaf:homepage rdf:resource="http://cldf.clld.org/" />
     </owl:Ontology>
 
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#slices">
+        <rdfs:label xml:lang="en">Slices</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>Space-separated slice specifications</p>
+        </rdfs:comment>
+    </rdf:Property>
+
     <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#source">
         <rdfs:label xml:lang="en">Source</rdfs:label>
         <rdfs:comment rdf:parseType="Literal">
