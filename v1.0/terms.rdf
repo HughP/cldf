@@ -40,6 +40,22 @@
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier" />
     </rdf:Property>
 
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#macroarea">
+        <rdfs:label xml:lang="en">Macroarea</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>A macroarea as defined by <a href="http://glottolog.org">Glottolog</a>.</p>
+        </rdfs:comment>
+        <rdfs:seeAlso rdf:resource="http://glottolog.org/meta/glossary#macroarea" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#categories">
+        <rdfs:label xml:lang="en">Categories</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>The categories to which values for a <a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical variable (a.k.a. parameter)</a> can be assigned.</p>
+        </rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://en.wikipedia.org/wiki/Categorical_variable" />
+    </rdf:Property>
+
     <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#alignment">
         <rdfs:label xml:lang="en">Alignment</rdfs:label>
         <rdfs:comment rdf:parseType="Literal">
@@ -229,10 +245,10 @@
             The table of cognate judgements accompanying a CLDF Wordlist
         </rdfs:comment>
     </rdfs:Class>
-    <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#CognateTable">
-        <rdfs:label xml:lang="en">Cognate Table</rdfs:label>
+    <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#PartialCognateTable">
+        <rdfs:label xml:lang="en">Partial Cognate Table</rdfs:label>
         <rdfs:comment>
-            The table of cognate judgements of a CLDF Wordlist
+            The table of partial cognate judgements of a CLDF Wordlist
         </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#LanguageTable">
