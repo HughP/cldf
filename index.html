@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>CLDF - Cross-Linguistic Data Formats</title>
@@ -8,108 +8,238 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width">
-  </head>
+</head>
 
- <body class="site">
-    <header class="site-header">
+<body class="site">
+<header class="site-header">
     <nav>
-    <div class="sticky-nav">
-    <div class="container-nav">
-       <div class="nav-container">
-         <div class="navbar-brand"> <a href="http://cldf.clld.org">
-             <img width="150" src="logos/logo_straight.png" alt="CLDF">
-         </a> </div>
-         <div class="navbar-nav nav-mobile">
-            <a class="nav-item nav-link btn btn-nav" href="/">Home</a>
-            <a class="nav-item nav-link btn btn-nav" href="v1.0/terms.rdf">Ontology</a>
-             <a class="nav-item nav-link btn btn-nav" href="https://github.com/glottobank/cldf/tree/master/examples">Examples</a>
-         </div>
-         <div class="navbar-nav nav-main">
-           <a class="nav-item nav-link active" href="/">Home</a>
-           <a href="v1.0/terms.rdf" class="nav-item nav-link">Ontology</a>
-             <a class="nav-item nav-link" href="https://github.com/glottobank/cldf/tree/master/examples">Examples</a>
-         </div>
-      </div>
-      </div>
-      </div>
+        <div class="sticky-nav">
+            <div class="container-nav">
+                <div class="nav-container">
+                    <div class="navbar-brand"><a href="http://cldf.clld.org">
+                        <img width="150" src="logos/logo_straight.png" alt="CLDF">
+                    </a></div>
+                    <div class="navbar-nav nav-mobile">
+                        <a class="nav-item nav-link btn btn-nav" href="/">Home</a>
+                        <a class="nav-item nav-link btn btn-nav" href="v1.0/terms.rdf">Ontology</a>
+                        <a class="nav-item nav-link btn btn-nav"
+                           href="https://github.com/glottobank/cldf/tree/master/examples">Examples</a>
+                    </div>
+                    <div class="navbar-nav nav-main">
+                        <a class="nav-item nav-link active" href="/">Home</a>
+                        <a href="v1.0/terms.rdf" class="nav-item nav-link">Ontology</a>
+                        <a class="nav-item nav-link"
+                           href="https://github.com/glottobank/cldf/tree/master/examples">Examples</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </nav>
-    </header>
+</header>
 <main class="site-content">
-<section class="section-alt pad-top">
-  <div class="container">
-<h1 class="text-center headline">Cross-Linguistic Data Formats</h1>
+    <section class="section-alt pad-top">
+        <div class="container">
+            <h1 class="text-center headline">Cross-Linguistic Data Formats</h1>
 
-</div>
-</section>
-<section class="section-main">
-  <div class="container pad-top">
- <div class="service-flexrow pad-top">
+        </div>
+    </section>
+    <section class="section-main">
+        <div class="container pad-top">
+            <div class="service-flexrow pad-top">
+                <div class="column-33">
+                    <div style="padding-top: 3cm;">
+                        <img src="logos/logo.png" alt="CLDF logo" class="img-responsive">
+                    </div>
+                </div>
+                <div class="column-66">
+                    <div class="gray-box">
+                        <h2>Why?</h2>
+                        <p>
+                            To allow exchange of cross-linguistic data and decouple
+                            development of tools and methods from that of
+                            databases, standardized data formats are necessary.
+                        </p>
+                        <p>
+                            Once established, these dataformats could become a foundation
+                            not
+                            only for tools but also for instruction material in the spirit
+                            of
+                            <a href="http://datacarpentry.org/">Data Carpentry</a> for
+                            historical
+                            linguistics and linguistic typology.
+                        </p>
+                    </div>
+                    <div class="gray-box">
+                        <h2>What?</h2>
+                        <p>
+                            The main types of cross-linguistic data we are concerned with
+                            here
+                            are any tabular data which is typically
+                            analysed using quantitative (automated) methods or made
+                            accessible
+                            using software tools like the `clld` framework, such as
+                        </p>
+                        <ul>
+                            <li>wordlists (or more complex lexical data including e.g.
+                                cognate
+                                judgements),
+                            </li>
+                            <li>
+                                structure datasets (e.g. <a
+                                    href="http://wals.info/feature">WALS features</a>),
+                            </li>
+                            <li>simple dictionaries.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="service-flexrow pad-top">
+                <div class="column-100 gray-box">
+                    <h2>Design principles</h2>
+                    <ul>
+                        <li>Data should be both editable "by hand" and amenable to reading
+                            and
+                            writing by software (preferably software the typical linguist
+                            can be
+                            expected to use correctly).
+                        </li>
+                        <li>Data should be encoded as UTF-8 text files.</li>
+                        <li>If entities can be referenced, e.g. languages through their
+                            Glottocode,
+                            this should be done rather than duplicating information like
+                            language
+                            names.
+                        </li>
+                        <li>Identifier should be resolvable HTTP URLs if possible. If not,
+                            they
+                            should be documented in the metadata.
+                        </li>
+                        <li>Compatibility with existing tools, standards and practice
+                            should
+                            always be kept in mind.
+                        </li>
+                    </ul>
+                    <p>
+                        Since we are concerned with tabular data here, CLDF is built on
+                        W3C's
+                        <a href="http://www.w3.org/TR/tabular-data-model/#standard-file-metadata">
+                            Model for Tabular Data and Metadata on the Web</a>
+                        and
+                        <a href="https://www.w3.org/TR/tabular-metadata/">
+                            Metadata Vocabulary for Tabular Data</a>.
+                    </p>
+                    <p>
+                        One of the main goals of the <b>CLDF</b> specification is a useful
+                        delineation of data and tools. Using a CSV
+                        based format makes it really easy to use this data in a
+                        <a href="https://en.wikipedia.org/wiki/Pipeline_%28Unix%29">
+                            UNIX-style pipeline</a> of
+                        data transformation commands.
+                        This pipeline-style of data transformation and analysis seems to
+                        be at the core of typical workflows e.g. in
+                        historical linguistics, e.g.
+                        <a href="http://lingpy.org/tutorial/workflow.html">LingPy</a> or
+                        <a href="https://github.com/cysouw/qlcPipe">QLC</a>.
+                    </p>
+                    <p>
+                        If suitable text- and line-based formats are available, this
+                        pipeline-style does also allow for easy extensibility;
+                        E.g. a workflow for automatic cognate judgements based on LingPy
+                        functionality could be extended with phylogenetic
+                        analysis and post-processing via
+                        <a href="https://github.com/lmaurits/phyltr">phyltr</a>, which
+                        processes sets
+                        of phylogenetic trees represented in the newick format, or
+                        <a href="http://etetoolkit.org/documentation/tools/">ete</a>.
+                    </p>
+                    <p>
+                        If cross-linguistic comparisons procede in the footsteps of
+                        bioinformatics, workflows based UNIX pipelines may at some point
+                        be formalized using a <a
+                            href="http://common-workflow-language.github.io/">
+                        common workflow language</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="service-flexrow pad-top">
+                <div class="column-100 gray-box">
+                    <h2>History</h2>
 
-  <div class="column-33">
-      <div>
-      <img src="logos/logo.png" alt="CLDF logo" class="img-responsive">
-      </div>
-  </div>
-
-<div class="column-66 gray-box">
-   <div>
-       <h2>
-           <a class="anchor" href="#welcome-to-github-pages" aria-hidden="true">
-               <span aria-hidden="true" class="octicon octicon-link"></span></a>History</h2>
-
-       <p>While data formats to exchange linguistic data have been around for some time, e.g. the SFM or Standard Format
-           used by Toolbox, new developments in the area of language diversity research have motivated this push for a new
-           set of formats:</p>
-       <ul>
-           <li>A new interest in standardizing <a href="https://www.w3.org/TR/tabular-data-model/">tabular data on the web</a>,
-               with a particular focus on <a href="http://csvconf.com/">CSV</a></li>
-           <li>A trend towards using computational methods to analyse large scale cross-linguistic data.</li>
-           <!--li>The clld framework, developed within the CLLD project has </li-->
-       </ul>
-       <p>Thus, following up discussions from the first workshop on
-           <a href="http://www.mpi.nl/events/language-comparison-with-linguistic-databases-reflex-and-typological-databases">
-               Language Comparison with Linguistic Databases
-           </a> a
-           <a href="http://www.eva.mpg.de/linguistics/conferences/2014-ws-lanclid2/index.html">second workshop</a> in Leipzig
-           focused on the idea of a very simple CSV based format to exchange very simple cross-linguistic data.</p>
-       <p>Simplicity was the main design goal from the start, so the formats under consideration will evolve starting out
-           as simple as possible. Thus, the first milestone to be reached is a proof of usefulness. With the
-           <a href="https://github.com/glottobank/cldf/releases/tag/v0.4">first release of the CLDF spec</a> we hope to provide
-           a baseline for experiments, and possibly even this proof.</p>
-
-  </div>
-</div>
-</div>
-</div>
-</section>
+                    <p>While data formats to exchange linguistic data have been around for
+                        some time, e.g. the SFM or Standard Format
+                        used by Toolbox, new developments in the area of language
+                        diversity research have motivated this push for a new
+                        set of formats:</p>
+                    <ul>
+                        <li>A new interest in standardizing <a
+                                href="https://www.w3.org/TR/tabular-data-model/">tabular
+                            data on the web</a>,
+                            with a particular focus on <a
+                                    href="http://csvconf.com/">CSV</a></li>
+                        <li>A trend towards using computational methods to analyse large
+                            scale cross-linguistic data.
+                        </li>
+                        <li>
+                            The <a href="https://github.com/clld/clld">
+                            clld framework</a>, developed within the
+                            <a href="http://clld.org">CLLD project</a> has shown that many
+                            different cross-linguistic databases can be built on top of
+                            the
+                            same core data model. CLDF is an attempt to externalise this
+                            data
+                            model.
+                        </li>
+                    </ul>
+                    <p>Thus, following up discussions from the first workshop on
+                        <a href="http://www.mpi.nl/events/language-comparison-with-linguistic-databases-reflex-and-typological-databases">
+                            Language Comparison with Linguistic Databases
+                        </a> a
+                        <a href="http://www.eva.mpg.de/linguistics/conferences/2014-ws-lanclid2/index.html">second
+                            workshop</a> in Leipzig
+                        focused on the idea of a very simple CSV based format to exchange
+                        very simple cross-linguistic data.</p>
+                    <p>Simplicity was the main design goal from the start, so the formats
+                        under consideration will evolve starting out
+                        as simple as possible. Thus, the first milestone to be reached is
+                        a proof of usefulness. With the
+                        <a href="https://github.com/glottobank/cldf/releases/tag/v0.4">first
+                            release of the CLDF spec</a> we hope to provide
+                        a baseline for experiments, and possibly even this proof.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 <footer class="site-footer">
-<!-- expanded_footer -->
+    <!-- expanded_footer -->
 
-<div class="footer">
+    <div class="footer">
         <div class="container flex-footer">
-               <div class="f-links f-item">
-               <h2>CLDF Specification</h2>
-              <ul class="footer-links">
-                  <li><a href="https://github.com/glottobank/cldf/zipball/master">Download <strong>ZIP File</strong></a></li>
-                  <li><a href="https://github.com/glottobank/cldf/tarball/master">Download <strong>TAR Ball</strong></a></li>
-                  <li><a href="https://github.com/glottobank/cldf">View On <strong>GitHub</strong></a></li>
-              </ul>
-               </div>
+            <div class="f-links f-item">
+                <h2>CLDF Specification</h2>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/glottobank/cldf/zipball/master">Download
+                        <strong>ZIP File</strong></a></li>
+                    <li><a href="https://github.com/glottobank/cldf/tarball/master">Download
+                        <strong>TAR Ball</strong></a></li>
+                    <li><a href="https://github.com/glottobank/cldf">View On <strong>GitHub</strong></a>
+                    </li>
+                </ul>
+            </div>
             <div class="f-about f-item">
                 <h2>About</h2>
                 <p>CLDF is an initiative by the Glottobank consortium.</p>
             </div>
-                <div class="f-contact f-item">
-                    <!-- Contact Us -->
-                    <h2>Contact Info</h2>
-                    <span class="footer-address">Robert Forkel<br /> <span style="font-family: monospace">forkel@shh.mpg.de</span></address>
-                </div>
+            <div class="f-contact f-item">
+                <!-- Contact Us -->
+                <h2>Contact Info</h2>
+                <span class="footer-address">Robert Forkel</span><br/>
+                <span style="font-family: monospace">forkel@shh.mpg.de</span>
+            </div>
+        </div>
+    </div>
 
-  </div>
-</div>
-
-<!-- expanded_footer end -->
+    <!-- expanded_footer end -->
 </footer>
 </body>
 </html>
