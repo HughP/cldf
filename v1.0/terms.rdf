@@ -20,10 +20,10 @@
         <foaf:homepage rdf:resource="http://cldf.clld.org/" />
     </owl:Ontology>
 
-    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#slices">
-        <rdfs:label xml:lang="en">Slices</rdfs:label>
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#slice">
+        <rdfs:label xml:lang="en">Slice</rdfs:label>
         <rdfs:comment rdf:parseType="Literal">
-            <p>Space-separated slice specifications</p>
+            <p>Slice specification following Python's slice notation</p>
         </rdfs:comment>
     </rdf:Property>
 
@@ -65,10 +65,10 @@
         <rdfs:seeAlso rdf:resource="http://glottolog.org/meta/glossary#macroarea" />
     </rdf:Property>
 
-    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#categories">
-        <rdfs:label xml:lang="en">Categories</rdfs:label>
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#category">
+        <rdfs:label xml:lang="en">Category</rdfs:label>
         <rdfs:comment rdf:parseType="Literal">
-            <p>The categories to which values for a <a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical variable (a.k.a. parameter)</a> can be assigned.</p>
+            <p>A category to which values for a <a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical variable (a.k.a. parameter)</a> can be assigned.</p>
         </rdfs:comment>
         <rdfs:seeAlso rdf:resource="https://en.wikipedia.org/wiki/Categorical_variable" />
     </rdf:Property>
