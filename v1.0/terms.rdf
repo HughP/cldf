@@ -20,6 +20,104 @@
         <foaf:homepage rdf:resource="http://cldf.clld.org/" />
     </owl:Ontology>
 
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#id">
+        <rdfs:label xml:lang="en">ID</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>A unique identifier for a row in a table.</p>
+            <p>
+                To allow usage of identifiers as path components of URLs or as variables
+                in URI templates, the string representation of an identifier must
+                follow the production of
+                <a href="https://tools.ietf.org/html/rfc6570#page-14">variable names in RFC 6570</a>
+                with the additional restriction of no percent encoding being allowed.
+            </p>
+        </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/source" />
+        <rdfs:seeAlso rdf:resource="http://dublincore.org/documents/dcmi-terms/#terms-identifier" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#name">
+        <rdfs:label xml:lang="en">Name</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>A title, name or label for an entity.</p>
+        </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/title" />
+        <rdfs:seeAlso rdf:resource="http://dublincore.org/documents/dcmi-terms/#terms-title" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#description">
+        <rdfs:label xml:lang="en">Description</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>A description for an entity.</p>
+        </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/description" />
+        <rdfs:seeAlso rdf:resource="http://dublincore.org/documents/dcmi-terms/#terms-description" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#latitude">
+        <rdfs:label xml:lang="en">Latitude</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>
+                A latitude in the
+                <a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>
+                standard coordinate system, specified as decimal number of degrees.
+            </p>
+        </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#lat" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#longitude">
+        <rdfs:label xml:lang="en">Longitude</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>
+                A longitude in the
+                <a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>
+                standard coordinate system, specified as decimal number of degrees.
+            </p>
+        </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#long" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#primaryText">
+        <rdfs:label xml:lang="en">Primary Text</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>
+                The primary text of an example.
+            </p>
+        </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/linguistics/gold/hasSourceLine" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#analyzedWord">
+        <rdfs:label xml:lang="en">Analyzed Word</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>
+                The morpheme-pattern analysis of a word in an example.
+            </p>
+        </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/linguistics/gold/GrammarUnit" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#gloss">
+        <rdfs:label xml:lang="en">Gloss</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>
+                A gloss corresponding to the morpheme-pattern analysis of a word in an example.
+            </p>
+        </rdfs:comment>
+        <rdfs:seeAlso rdf:resource="http://purl.org/linguistics/gold/hasGlosses" />
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#translatedText">
+        <rdfs:label xml:lang="en">Translated Text</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>
+                The translated text of an example.
+            </p>
+        </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/linguistics/gold/hasTranslationLine" />
+    </rdf:Property>
+
     <rdf:Property rdf:about="http://cldf.clld.org/v1.0/terms.rdf#slice">
         <rdfs:label xml:lang="en">Slice</rdfs:label>
         <rdfs:comment rdf:parseType="Literal">
@@ -232,6 +330,14 @@
             The table of value assignments of a CLDF Structure Dataset
         </rdfs:comment>
     </rdfs:Class>
+    <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#CodeTable">
+        <rdfs:label xml:lang="en">Code Table</rdfs:label>
+        <rdfs:comment>
+            The Code Table lists valid values for categorical parameters, thus
+            enabling validity checks and providing a place for additional information
+            about codes such as a source.
+        </rdfs:comment>
+    </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#ExampleTable">
         <rdfs:label xml:lang="en">Example Table</rdfs:label>
         <rdfs:comment>
@@ -256,16 +362,40 @@
             The table of forms of a CLDF Wordlist
         </rdfs:comment>
     </rdfs:Class>
+    <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#BorrowingTable">
+        <rdfs:label xml:lang="en">Borrowing Table</rdfs:label>
+        <rdfs:comment rdf:parseType="Literal">
+            <p>
+                The Borrowing Table stores information about borrowings or loanwords by
+                linking two rows in the Form Table as
+                <a href="https://en.wikipedia.org/wiki/Associative_entity">associative entity</a>
+                where additional information about the particular case of borrowing can be provided.
+            </p>
+        </rdfs:comment>
+    </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#CognateTable">
         <rdfs:label xml:lang="en">Cognate Table</rdfs:label>
-        <rdfs:comment>
-            The table of cognate judgements accompanying a CLDF Wordlist
+        <rdfs:comment rdf:parseType="Literal">
+            <p>
+                The table of cognate judgements accompanying a CLDF Wordlist.
+                If the only thing we know about cognate sets is the set of members, a Cognate
+                Table can be used without a corresponding
+                <a href="#CognatesetTable">Cognateset Table</a>, otherwise it will become the
+                <a href="https://en.wikipedia.org/wiki/Associative_entity">associative table</a>
+                between Form Table and Cognateset Table.
+            </p>
         </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#PartialCognateTable">
         <rdfs:label xml:lang="en">Partial Cognate Table</rdfs:label>
         <rdfs:comment>
             The table of partial cognate judgements of a CLDF Wordlist
+        </rdfs:comment>
+    </rdfs:Class>
+    <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#CognatesetTable">
+        <rdfs:label xml:lang="en">Cognateset Table</rdfs:label>
+        <rdfs:comment>
+            A table holding additional data about cognate sets.
         </rdfs:comment>
     </rdfs:Class>
     <rdfs:Class rdf:about="http://cldf.clld.org/v1.0/terms.rdf#LanguageTable">
