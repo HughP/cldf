@@ -118,6 +118,20 @@
                         </li>
                     </ul>
                     <p>
+                        Automated re-use requires that the standard specifies not just
+                        the structure, but also the semantics of the data stored. Thus,
+                        the CLDF specification should be as rigid as possible. Of course, new
+                        types of data cannot be immediately compatible with
+                        independently developed tools; so the CLDF standard should also provide
+                        mechanisms to let data types evolve well understood semantics,
+                        while being syntactically compatible from the start.
+                    </p>
+                </div>
+            </div>
+            <div class="service-flexrow pad-top">
+                <div class="column-100 gray-box">
+                    <h2>Technology</h2>
+                    <p>
                         Since we are concerned with tabular data here, CLDF is built on
                         W3C's
                         <a href="http://www.w3.org/TR/tabular-data-model/#standard-file-metadata">
@@ -125,6 +139,16 @@
                         and
                         <a href="https://www.w3.org/TR/tabular-metadata/">
                             Metadata Vocabulary for Tabular Data</a>.
+                        This model - by virtue of being a
+                        <a href="https://en.wikipedia.org/wiki/JSON-LD">JSON-LD</a> dialect -
+                        is ideally suited to be combined with an
+                        <a href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a>
+                        to specify syntax as well as semantics of a data serialization format.
+                        Much like <a href="https://software.sil.org/shoebox/mdf/">MDF</a> - SIL's
+                        Multi-Dictionary Formatter - adds a hierarchical data model on top of
+                        Toolbox' standard format markers to support a data reuse scenario,
+                        CLDF structures cross-linguistic data to make automated reuse in
+                        typical analyses in historical linguistics possible.
                     </p>
                     <p>
                         One of the main goals of the <b>CLDF</b> specification is a useful
