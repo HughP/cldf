@@ -397,7 +397,7 @@ img { border: none; }
     <xsl:template mode="details" match="*">
         <xsl:param name="ns" select="'./'"/>
         <dt>
-            <xsl:value-of select="local-name()"/>
+            <a href="{namespace-uri()}{local-name()}"><xsl:value-of select="name()"/></a>
             <xsl:value-of select="':'"/>
         </dt>
         <dd>
